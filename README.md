@@ -19,5 +19,8 @@ Descargar y abrir en Intellij IDEA
 - Archivo postman collection 
 
 
-URL en servidor de aplicaciones: http://localhost:8090/api
-URL api swagger: http://localhost:8090/swagger-ui/index.html#/person-api/createList
+URL en servidor de aplicaciones: 
+http://localhost:8090/api
+
+URL api swagger: 
+http://localhost:8090/swagger-ui/index.html
