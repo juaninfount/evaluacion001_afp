@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Schema(description = "Entidad del modelo de Dominio Cuenta de Fondos")
 @Data   // genera codigo de los metodos y constructor mas repetidos (boilerplate)
@@ -34,10 +35,13 @@ public class FundAccount {
     private boolean active;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clientID",foreignKey = @ForeignKey(name="FK_CLIENT"),referencedColumnName ="clientID",nullable = false)
+    @JoinColumn(name = "clientID",foreignKey = @ForeignKey(name="FK_CLIENT"),referencedColumnName ="clientID",unique = true,nullable = false)
     private Client client;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "afpID",foreignKey = @ForeignKey(name="FK_AFP"),referencedColumnName ="afpID",nullable = false)
     private AFP afp;
+
+    @OneToMany(mappedBy = "fundAccount", cascade = CascadeType.ALL)
+    private List<FundWithDrawalRequest> requests;
 }

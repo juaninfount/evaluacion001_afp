@@ -11,16 +11,19 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
 
+    private static final org.slf4j.Logger log =  org.slf4j.LoggerFactory.getLogger(PersonServiceImpl.class);
     @Autowired
     PersonRepository personRepository;
 
     @Override
     public List<Person> findAll() {
+        log.debug("PersonServiceImpl::findAll");
         return personRepository.findAll();
     }
 
     @Override
     public Person create(Person persona) {
+        log.debug("PersonServiceImpl::create");
         return personRepository.save(persona);
     }
 
@@ -35,7 +38,7 @@ public class PersonServiceImpl implements PersonService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        log.debug("PersonServiceImpl::update");
         return personRepository.save(person);
     }
 
@@ -45,6 +48,7 @@ public class PersonServiceImpl implements PersonService {
          if(optional.isEmpty())
             throw new ModelNotFoundException("Persona con id "+ id + " no encontrada.");
 
+        log.debug("PersonServiceImpl::findById");
         return optional.get();
     }
 
@@ -53,7 +57,17 @@ public class PersonServiceImpl implements PersonService {
         var optional = personRepository.findById(id);
         if(optional.isEmpty())
             throw new ModelNotFoundException("Persona con id "+ id + " no encontrada.");
+
+        log.debug("PersonServiceImpl::delete");
         personRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean createList(List<Person> personList) {
+        personRepository.saveAll(personList);
+
+        log.debug("PersonServiceImpl::createList");
+        return true;
     }
 
 }

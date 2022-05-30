@@ -28,6 +28,11 @@ public class PersonApi {
         return new ResponseEntity<Person>(response, HttpStatus.CREATED);
     }
 
+    @PostMapping("/createList")
+    public  ResponseEntity<Boolean> createList(@RequestBody List<Person> personList){
+        return new ResponseEntity<Boolean>(personService.createList(personList), HttpStatus.CREATED);
+    }
+
     @PutMapping
     public   ResponseEntity<Person> update(@Valid @RequestBody Person person){
         Person response = personService.update(person);

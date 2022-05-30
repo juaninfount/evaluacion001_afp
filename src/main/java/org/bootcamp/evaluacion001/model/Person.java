@@ -41,11 +41,10 @@ public class Person {
     private String phoneNumber;
 
     @Schema(description = "Email personal")
-    @Pattern(regexp = "^[A-Z0-9+_.-]+@[A-Z0-9.-]+$", message = "Expresión no válida para email")
+    //@Pattern(regexp = "^[A-Z0-9+_.-]+@[A-Z0-9.-]+$", message = "Expresión no válida para email")
     @Size(max = 100, message = "Email debe tener como máximo 100 carateres")
     @Column(name = "email", nullable = false, length = 100)
     private String email;
-
 
     @OneToOne(mappedBy = "person")
     private Client client;

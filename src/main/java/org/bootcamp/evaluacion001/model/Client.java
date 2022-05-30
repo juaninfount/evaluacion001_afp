@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Schema(description = "Entidad del modelo de Dominio Cliente")
 @Data   // genera codigo de los metodos y constructor mas repetidos (boilerplate)
 @Entity // representacion de POJO
-@Table(name="Client", indexes = { @Index(name = "IDX_Person", columnList = "personID asc") })
+@Table(name="Client", indexes = { @Index(name = "IDX_Person", unique = true, columnList = "personID asc") })
 public class Client //extends Person
 {
     public Client() {
